@@ -1,3 +1,2 @@
-vendor
-Gopkg.lock
+pkged.go
 gripmock

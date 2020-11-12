@@ -21,7 +21,7 @@ basic syntax to run GripMock is
 - On separate terminal we gonna add stub into stub service. Run `curl -X POST -d '{"service":"Greeter","method":"SayHello","input":{"equals":{"name":"gripmock"}},"output":{"data":{"message":"Hello GripMock"}}}' localhost:4771/add `
 - Now we are ready to test it with our client. you can find client example file under `example/client/`. Execute one of your preferred language. Example for go: `go run example/client/go/*.go`
 
-Check [`example`](https://github.com/tokopedia/gripmock/tree/master/example) folder for various usecase of gripmock.
+Check [`example`](https://github.com/hairymike/gripmock/tree/master/example) folder for various usecase of gripmock.
 
 ## Stubbing
 

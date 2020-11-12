@@ -14,8 +14,7 @@ RUN go get -u -v github.com/golang/protobuf/protoc-gen-go \
 	github.com/lithammer/fuzzysearch/fuzzy \
 	golang.org/x/tools/imports
 
-RUN go get -u -v github.com/gobuffalo/packr/v2/... \
-	github.com/gobuffalo/packr/v2/packr2
+RUN go get github.com/markbates/pkger/cmd/pkger
 
 # cloning well-known-types
 RUN git clone https://github.com/google/protobuf.git /protobuf-repo
@@ -27,20 +26,18 @@ RUN mv /protobuf-repo/src/ /protobuf/
 
 RUN rm -rf /protobuf-repo
 
-RUN mkdir -p /go/src/github.com/tokopedia/gripmock
+RUN mkdir -p /go/src/github.com/hairymike/gripmock
 
-COPY . /go/src/github.com/tokopedia/gripmock
+COPY . /go/src/github.com/hairymike/gripmock
 
-WORKDIR /go/src/github.com/tokopedia/gripmock/protoc-gen-gripmock
+WORKDIR /go/src/github.com/hairymike/gripmock/protoc-gen-gripmock
 
-RUN packr2
+RUN pkger
 
 # install generator plugin
 RUN go install -v
 
-RUN packr2 clean
-
-WORKDIR /go/src/github.com/tokopedia/gripmock
+WORKDIR /go/src/github.com/hairymike/gripmock
 
 # install gripmock
 RUN go install -v
