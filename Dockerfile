@@ -1,5 +1,7 @@
 FROM golang:alpine
 
+RUN go version
+
 RUN mkdir /proto
 
 RUN mkdir /stubs
@@ -26,18 +28,18 @@ RUN mv /protobuf-repo/src/ /protobuf/
 
 RUN rm -rf /protobuf-repo
 
-RUN mkdir -p /go/src/github.com/hairymike/gripmock
+RUN mkdir -p /go/src/github.com/tokopedia/gripmock
 
-COPY . /go/src/github.com/hairymike/gripmock
+COPY . /go/src/github.com/tokopedia/gripmock
 
-WORKDIR /go/src/github.com/hairymike/gripmock/protoc-gen-gripmock
+WORKDIR /go/src/github.com/tokopedia/gripmock/protoc-gen-gripmock
 
 RUN pkger
 
 # install generator plugin
 RUN go install -v
 
-WORKDIR /go/src/github.com/hairymike/gripmock
+WORKDIR /go/src/github.com/tokopedia/gripmock
 
 # install gripmock
 RUN go install -v
